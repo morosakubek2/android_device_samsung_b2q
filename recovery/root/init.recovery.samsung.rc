@@ -1,8 +1,8 @@
-on init
-    # unlink /efs > /mnt/vendor/efs
-    rm /efs
-    mkdir /efs
-    mkdir /sec_efs
+on boot
+    start sec-vibrator
 
- #to cut charging battery path
-    write /sys/class/power_supply/battery/siop_level 0
+service sec-vibrator /vendor/bin/hw/vendor.samsung.hardware.vibrator-service
+    user root
+    group root
+    disabled
+    setenv LD_LIBRARY_PATH /vendor/lib64:/vendor/lib
