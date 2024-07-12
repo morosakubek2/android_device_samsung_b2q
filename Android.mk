@@ -1,6 +1,5 @@
 #
-# Copyright (C) 2024 The Android Open Source Project
-# Copyright (C) 2024 SebaUbuntu's TWRP device tree generator
+# Copyright (C) 2023 The LineageOS Project
 #
 # SPDX-License-Identifier: Apache-2.0
 #
@@ -8,5 +7,9 @@
 LOCAL_PATH := $(call my-dir)
 
 ifeq ($(TARGET_DEVICE),b2q)
-include $(call all-subdir-makefiles,$(LOCAL_PATH))
+
+subdir_makefiles=$(call first-makefiles-under,$(LOCAL_PATH))
+
+$(foreach mk,$(subdir_makefiles),$(info including $(mk) ...)$(eval include $(mk)))
+
 endif

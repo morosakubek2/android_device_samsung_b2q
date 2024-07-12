@@ -1,14 +1,13 @@
 #
-# Copyright (C) 2024 The Android Open Source Project
-# Copyright (C) 2024 SebaUbuntu's TWRP device tree generator
+# Copyright (C) 2023 The LineageOS Project
 #
 # SPDX-License-Identifier: Apache-2.0
 #
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/omni_b2q.mk
+    $(LOCAL_DIR)/twrp_b2q.mk
 
 COMMON_LUNCH_CHOICES := \
-    omni_b2q-user \
-    omni_b2q-userdebug \
-    omni_b2q-eng
+    twrp_b2q-user \
+    twrp_b2q-userdebug \
+    twrp_b2q-eng
