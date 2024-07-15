@@ -95,7 +95,7 @@ BOARD_MKBOOTIMG_ARGS := --kernel_offset $(BOARD_KERNEL_OFFSET) --ramdisk_offset 
 BOARD_MKBOOTIMG_ARGS += --tags_offset $(BOARD_KERNEL_TAGS_OFFSET) --second_offset $(BOARD_KERNEL_SECOND_OFFSET)
 BOARD_MKBOOTIMG_ARGS += --header_version $(BOARD_BOOT_HEADER_VERSION) --pagesize $(BOARD_KERNEL_PAGESIZE) --board "SRPUC26A001"
 BOARD_MKBOOTIMG_ARGS += --dtb $(TARGET_PREBUILT_DTB) --dtb_offset $(BOARD_DTB_OFFSET)
-BOARD_CUSTOM_BOOTIMG_MK := device/samsung/b2q/bootimg.mk
+#BOARD_CUSTOM_BOOTIMG_MK := device/samsung/b2q/bootimg.mk
 
 BOARD_ROOT_EXTRA_FOLDERS := \
     carrier \
