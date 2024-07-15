@@ -1,25 +1,45 @@
-# Inherit from those products. Most specific first.
+#
+# Copyright (C) 2022 The Android Open Source Project
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+
+# Release name
+PRODUCT_RELEASE_NAME := b2q
+
+# Inherit from common AOSP config
+$(call inherit-product, $(SRC_TARGET_DIR)/product/base.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
-$(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 
-# Inherit some common Lineage stuff
-#$(call inherit-product, vendor/lineage/config/common_full_phone.mk)
+# Enable project quotas and casefolding for emulated storage without sdcardfs
+$(call inherit-product, $(SRC_TARGET_DIR)/product/emulated_storage.mk)
 
+# Inherit some common TWRP stuff.
 $(call inherit-product, vendor/twrp/config/common.mk)
 
 # Inherit device configuration
 $(call inherit-product, device/samsung/b2q/device.mk)
 
-PRODUCT_BRAND := samsung
-PRODUCT_DEVICE := b2q
-PRODUCT_MANUFACTURER := samsung
+# Charger
+PRODUCT_PACKAGES += \
+    charger_res_images
+
+PRODUCT_COPY_FILES += $(call find-copy-subdir-files,*,device/samsung/b2q/recovery/root,recovery/root)
+
+## Device identifier. This must come after all inclusions
 PRODUCT_NAME := twrp_b2q
+PRODUCT_DEVICE := b2q
 PRODUCT_MODEL := SM-F711B
-
+PRODUCT_BRAND := samsung
+PRODUCT_MANUFACTURER := samsung
 PRODUCT_GMS_CLIENTID_BASE := android-samsung
-TARGET_VENDOR := samsung
-TARGET_VENDOR_PRODUCT_NAME := b2q
-PRODUCT_BUILD_PROP_OVERRIDES += PRIVATE_BUILD_DESC="b2qxxx-user 14 UP1A.231005.007 F711BXXS8HXE1 release-keys"
-
-# Set BUILD_FINGERPRINT variable to be picked up by both system and vendor build.prop
-BUILD_FINGERPRINT := samsung/b2qxxx/b2q:11/RP1A.200720.012/F711BXXS8HXE1:user/release-keys
